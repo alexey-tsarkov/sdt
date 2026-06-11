@@ -1,3 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
 CREATE OR REPLACE TABLE clients (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
@@ -28,11 +30,8 @@ CREATE OR REPLACE TABLE orders (
         ON DELETE RESTRICT 
         ON UPDATE CASCADE
     -- Индексы для оптимизации запросов
-    -- INDEX idx_customer_id (customer_id),
-    -- INDEX idx_item_id (item_id),
-    -- INDEX idx_status (status),
-    -- INDEX idx_order_date (order_date),
-    -- Составные индексы (для запросов из задания)
-    -- INDEX idx_customer_date (customer_id, order_date),      -- для запроса a и b
-    -- INDEX idx_item_status (item_id, status)                -- для запроса c и d
+    -- INDEX idx_customer_date (customer_id, order_date),
+    -- INDEX idx_item_status (item_id, status)
 );
+
+SET FOREIGN_KEY_CHECKS = 1;

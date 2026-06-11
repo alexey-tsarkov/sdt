@@ -16,6 +16,7 @@ LEFT JOIN orders AS o
 WHERE o.id IS NULL;
 
 -- Можно добавить покрывающий индекс, но это приведет к повышенному расходу памяти из-за строкового поля и замеделнию записи
+-- Здесь это может быть оправдано, т.к. полное чтение таблицы `clients` будет происходить из индекса, а не с диска
 -- CREATE INDEX idx_name ON clients (name);
 
 CREATE INDEX idx_customer_date ON orders (customer_id, order_date);

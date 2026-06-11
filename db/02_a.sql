@@ -5,8 +5,8 @@ LEFT JOIN orders AS o
     ON c.id = o.customer_id AND o.order_date >= DATE_SUB(NOW(), INTERVAL 7 DAY)
 WHERE o.id IS NULL;
 
-DROP INDEX IF EXISTS idx_clients_name ON clients;
-DROP INDEX IF EXISTS idx_orders_customer_date ON orders;
+DROP INDEX IF EXISTS idx_name ON clients;
+DROP INDEX IF EXISTS idx_customer_date ON orders;
 
 -- Без индексов
 EXPLAIN SELECT c.name
@@ -16,9 +16,9 @@ LEFT JOIN orders AS o
 WHERE o.id IS NULL;
 
 -- Можно добавить покрывающий индекс, но это приведет к повышенному расходу памяти из-за строкового поля и замеделнию записи
--- CREATE INDEX idx_clients_name ON clients (id, name);
+-- CREATE INDEX idx_name ON clients (name);
 
-CREATE INDEX idx_orders_customer_date ON orders (customer_id, order_date);
+CREATE INDEX idx_customer_date ON orders (customer_id, order_date);
 
 -- С индексами
 EXPLAIN SELECT c.name

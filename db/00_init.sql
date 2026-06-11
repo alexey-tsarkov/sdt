@@ -29,9 +29,6 @@ CREATE OR REPLACE TABLE orders (
         REFERENCES clients(id) 
         ON DELETE RESTRICT 
         ON UPDATE CASCADE
-    -- Индексы для оптимизации запросов
-    -- INDEX idx_customer_date (customer_id, order_date),
-    -- INDEX idx_item_status (item_id, status)
 );
 
 SET FOREIGN_KEY_CHECKS = 1;
